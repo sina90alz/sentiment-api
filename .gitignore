@@ -1,0 +1,61 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+.env
+.venv
+venv/
+ENV/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- PyTorch / Models ---
+*.pt
+*.pth
+checkpoints/
+models/
+
+# --- Data ---
+data/
+datasets/
+*.csv
+*.tsv
+*.jsonl
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Cache / Temp ---
+cache/
+tmp/
+temp/
+*.tmp
+
+# --- FastAPI / Uvicorn ---
+*.db
+*.sqlite3
+
+# --- VSCode / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+/dist/
+/build/
+*.tar
+
+# --- Generated documentation ---
+site/
+docs/_build/
