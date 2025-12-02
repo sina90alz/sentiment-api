@@ -71,7 +71,7 @@ def train():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
-    criterion = nn.BCELoss()
+    criterion = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
     # 6️⃣ Training loop
@@ -79,14 +79,20 @@ def train():
     for epoch in range(epochs):
         model.train()
         total_loss = 0
+
         for batch in train_loader:
             optimizer.zero_grad()
+            
             input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].unsqueeze(1).to(device)
-            outputs = model(input_ids)
-            loss = criterion(outputs, labels)
+
+            logits = model(input_ids, attention_mask=attention_mask)
+
+            loss = criterion(logits, labels)
             loss.backward()
             optimizer.step()
+
             total_loss += loss.item()
 
         avg_loss = total_loss / len(train_loader)
